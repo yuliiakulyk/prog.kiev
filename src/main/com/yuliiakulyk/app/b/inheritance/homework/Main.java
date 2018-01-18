@@ -23,9 +23,9 @@ public class Main {
         board.putShape(1, triangle);
         board.putShape(2, circle);
         board.putShape(3, square);
-        board.printShapesInfo();
+        System.out.println(board);
         board.removeShape(1);
         board.removeShape(1);
-        board.printShapesInfo();
+        System.out.println(board);
     }
 }

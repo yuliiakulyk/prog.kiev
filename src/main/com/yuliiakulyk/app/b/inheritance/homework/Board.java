@@ -36,15 +36,17 @@ public class Board {
         }
     }
 
-    public void printShapesInfo() {
-        System.out.println("Shapes info:");
+    @Override
+    public String toString() {
+        String output = "Shapes info: \n";
         double totalArea = 0;
         for (Shape shape : shapes) {
-            System.out.println(shape);
+            output += shape + "\n";
             if (shape != null) {
                 totalArea += shape.getArea();
             }
         }
-        System.out.println("Total area: " + totalArea);
+        output += "Total area: " + totalArea;
+        return output;
     }
 }
