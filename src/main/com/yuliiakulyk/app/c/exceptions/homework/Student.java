@@ -8,8 +8,8 @@ public class Student extends Human {
     private String faculty;
     private String group;
 
-    public Student(String name, int age, String address, boolean isMale, String university, String faculty, String group) {
-        super(name, age, address, isMale);
+    public Student(String name, String surname, int age, String address, boolean isMale, String university, String faculty, String group) {
+        super(name, surname, age, address, isMale);
         this.university = university;
         this.faculty = faculty;
         this.group = group;

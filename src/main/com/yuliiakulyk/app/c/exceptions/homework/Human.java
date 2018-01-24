@@ -5,12 +5,14 @@ package main.com.yuliiakulyk.app.c.exceptions.homework;
  */
 public class Human {
     private String name;
+    private String surname;
     private int age;
     private String address;
     private boolean isMale; //true - male, false - female
 
-    public Human(String name, int age, String address, boolean isMale) {
+    public Human(String name, String surname, int age, String address, boolean isMale) {
         this.name = name;
+        this.surname = surname;
         this.age = age;
         this.address = address;
         this.isMale = isMale;
@@ -25,6 +27,14 @@ public class Human {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public int getAge() {
@@ -55,6 +65,7 @@ public class Human {
     public String toString() {
         return "Human{" +
                 "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", age=" + age +
                 ", address='" + address + '\'' +
                 ", isMale=" + isMale +
