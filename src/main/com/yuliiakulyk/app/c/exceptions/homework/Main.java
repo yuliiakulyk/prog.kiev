@@ -32,10 +32,9 @@ public class Main {
             group.addStudent(student7);
             group.addStudent(student8);
             group.addStudent(student9);
-            group.addStudent(student10);
-            group.addStudent(student11);
+            //group.addStudent(student10);
+            //group.addStudent(student11);
         } catch (StudentGroupFullException e) {
-            //System.out.println(e.getMessage());
             e.printStackTrace();
         }
 

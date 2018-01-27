@@ -38,7 +38,7 @@ public class Group {
     public Student searchBySurname(String query) {
         for (Student student:
                 students) {
-            if (student.getSurname().toLowerCase().contains(query.toLowerCase())) {
+            if (student != null && student.getSurname().toLowerCase().contains(query.toLowerCase())) {
                 return student;
             }
         }
