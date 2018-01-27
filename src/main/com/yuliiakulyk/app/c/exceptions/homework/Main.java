@@ -1,5 +1,8 @@
 package main.com.yuliiakulyk.app.c.exceptions.homework;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Created by Yuliia Kulyk on 19.01.2018.
  */
@@ -51,6 +54,20 @@ public class Main {
         }
         System.out.println("Group after removing Ivanov: ");
         System.out.println(group);
-    }
 
+        File file = new File("src/main/com/yuliiakulyk/app/c/exceptions/homework/group.txt");
+        try {
+            group.writeToFile(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Group group1Copy = Group.restoreFromFile(file);
+            System.out.println("Group1 copy restored from file:");
+            System.out.println(group1Copy);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

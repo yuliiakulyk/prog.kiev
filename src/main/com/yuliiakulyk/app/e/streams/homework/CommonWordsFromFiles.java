@@ -9,15 +9,14 @@ import java.util.List;
  */
 public class CommonWordsFromFiles {
 
-    public static File getFileWithCommonWords(File file1, File file2) {
+    public static File getFileWithCommonWords(File file1, File file2) throws IOException {
         StringBuilder builder1 = new StringBuilder();
         StringBuilder builder2 = new StringBuilder();
         File file = new File(new File("src").getAbsolutePath().replaceAll(new File("src").getName(), "") + "/commonWords.txt");
-        try {
+
             String[] words1 = fileToStringBuilder(file1).replaceAll("[():#%\"'.,!?\\\\-]", " ").replaceAll("  ", " ").split(" ");
             String[] words2 = fileToStringBuilder(file2).replaceAll("[():#%\"'.,!?\\\\-]", " ").split(" ");
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            List<String> arrayList = new ArrayList();
+            List<String> arrayList = new ArrayList<String>();
             for (int i = 0; i < words1.length; i++) {
                 for (int j = 0; j < words2.length; j++) {
                     if (words1[i].equalsIgnoreCase(words2[j]) && !arrayList.contains(words1[i])) {
@@ -25,16 +24,7 @@ public class CommonWordsFromFiles {
                     }
                 }
             }
-            for (int i = 0; i < arrayList.size(); i++) {
-                writer.write(arrayList.get(i));
-                writer.newLine();
-            }
-            writer.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            writeArrayToFile(arrayList.toArray(), file);
         return file;
     }
 
@@ -58,5 +48,16 @@ public class CommonWordsFromFiles {
         }
         reader.close();
         System.out.println("------------------------------------------------------");
+    }
+
+    public static void writeArrayToFile(Object[] array, File file) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null) {
+                writer.write(array[i].toString());
+                writer.newLine();
+            }
+        }
+        writer.close();
     }
 }

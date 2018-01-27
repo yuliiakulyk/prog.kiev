@@ -1,5 +1,8 @@
 package main.com.yuliiakulyk.app.c.exceptions.homework;
 
+import main.com.yuliiakulyk.app.e.streams.homework.CommonWordsFromFiles;
+
+import java.io.*;
 import java.util.Arrays;
 
 /**
@@ -45,6 +48,27 @@ public class Group {
         return null;
     }
 
+    public void writeToFile(File file) throws IOException {
+        CommonWordsFromFiles.writeArrayToFile(students, file);
+    }
+
+    public static Group restoreFromFile(File file) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String studentString = "";
+        Group group = new Group();
+        String[] params;
+        for (; (studentString = reader.readLine()) != null;) {
+            params = studentString.split(",");
+            try {
+                group.addStudent(new Student(params[0], params[1], Integer.parseInt(params[2]), params[3], Boolean.parseBoolean(params[4]), params[5], params[6], params[7]));
+            } catch (StudentGroupFullException e) {
+                e.printStackTrace();
+            }
+        }
+        reader.close();
+        return group;
+    }
+
     @Override
     public String toString() {
         String[] surnames = new String[students.length];
@@ -53,8 +77,6 @@ public class Group {
                 surnames[i] = students[i].getSurname();
             }
         }
-        return "Group{" +
-                "students=" + Arrays.toString(surnames) +
-                '}';
+        return Arrays.toString(surnames);
     }
 }
