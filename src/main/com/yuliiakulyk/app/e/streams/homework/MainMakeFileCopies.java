@@ -12,15 +12,14 @@ import java.io.IOException;
 public class MainMakeFileCopies {
     public static void main(String[] args) {
         DocFileFilter docFileFilter = new DocFileFilter();
-        File src = new File("src");
-        File projectFolder = new File(src.getAbsolutePath().replace(src.getName(), ""));
+        File projectFolder = new File(System.getProperty("user.dir"));
         File[] list = projectFolder.listFiles(docFileFilter);
         System.out.println("doc files in project folder");
-        File docCopiesFolder = new File(projectFolder.getAbsolutePath() + "/docCopiesFolder");
+        File docCopiesFolder = new File(projectFolder, "docCopiesFolder");
         docCopiesFolder.mkdirs();
         for (File file: list) {
             System.out.println("doc file path before: " + file.getAbsolutePath());
-            File copy = new File(docCopiesFolder.getAbsolutePath() + "/" + file.getName());
+            File copy = new File(docCopiesFolder, file.getName());
             try {
                 FileWork.fileCopy(file, copy);
             } catch (IOException e) {

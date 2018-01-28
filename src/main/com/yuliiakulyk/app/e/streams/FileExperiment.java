@@ -1,6 +1,8 @@
 package main.com.yuliiakulyk.app.e.streams;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -55,5 +57,18 @@ public class FileExperiment {
         File folder = new File("F");
         folder.mkdirs();
         folder.delete();
+
+        File file4 = new File("/");
+        System.out.println(file4.exists());
+        System.out.println(file4.getAbsolutePath());
+        System.out.println(System.getProperty("user.dir"));
+        File file3 = new File(System.getProperty("user.dir"), "fileInProjectFolder.txt");
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file3));
+            writer.write("Hello world!");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

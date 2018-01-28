@@ -8,14 +8,19 @@ import java.util.List;
  * Created by Yuliia Kulyk on 27.01.2018.
  */
 public class CommonWordsFromFiles {
-
+    /**
+     *
+     * @param file1
+     * @param file2
+     * @return
+     * @throws IOException
+     */
     public static File getFileWithCommonWords(File file1, File file2) throws IOException {
-        StringBuilder builder1 = new StringBuilder();
-        StringBuilder builder2 = new StringBuilder();
-        File file = new File(new File("src").getAbsolutePath().replaceAll(new File("src").getName(), "") + "/commonWords.txt");
 
-            String[] words1 = fileToStringBuilder(file1).replaceAll("[():#%\"'.,!?\\\\-]", " ").replaceAll("  ", " ").split(" ");
-            String[] words2 = fileToStringBuilder(file2).replaceAll("[():#%\"'.,!?\\\\-]", " ").split(" ");
+        File file = new File(System.getProperty("user.dir"), "commonWords.txt");
+
+            String[] words1 = fileToString(file1).replaceAll("[():#%\"'.,!?\\\\-]", " ").replaceAll("  ", " ").split(" ");
+            String[] words2 = fileToString(file2).replaceAll("[():#%\"'.,!?\\\\-]", " ").split(" ");
             List<String> arrayList = new ArrayList<String>();
             for (int i = 0; i < words1.length; i++) {
                 for (int j = 0; j < words2.length; j++) {
@@ -28,7 +33,7 @@ public class CommonWordsFromFiles {
         return file;
     }
 
-    private static String fileToStringBuilder(File file) throws IOException {
+    private static String fileToString(File file) throws IOException {
             StringBuilder builder = new StringBuilder();
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String str = "";
@@ -40,7 +45,7 @@ public class CommonWordsFromFiles {
 
     public static void fileToConsole(File file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
-        String string = "";
+        String string;
         System.out.println("File " + file.getAbsolutePath() + " content: ");
         System.out.println("------------------------------------------------------");
         for (; (string = reader.readLine()) != null; ) {
