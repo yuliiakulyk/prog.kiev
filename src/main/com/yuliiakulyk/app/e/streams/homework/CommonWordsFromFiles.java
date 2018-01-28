@@ -21,7 +21,7 @@ public class CommonWordsFromFiles {
 
             String[] words1 = fileToString(file1).replaceAll("[():#%\"'.,!?\\\\-]", " ").replaceAll("  ", " ").split(" ");
             String[] words2 = fileToString(file2).replaceAll("[():#%\"'.,!?\\\\-]", " ").split(" ");
-            List<String> arrayList = new ArrayList<String>();
+            List<String> arrayList = new ArrayList<>();
             for (int i = 0; i < words1.length; i++) {
                 for (int j = 0; j < words2.length; j++) {
                     if (words1[i].equalsIgnoreCase(words2[j]) && !arrayList.contains(words1[i])) {
@@ -35,34 +35,39 @@ public class CommonWordsFromFiles {
 
     private static String fileToString(File file) throws IOException {
             StringBuilder builder = new StringBuilder();
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String str = "";
-            for (; (str = reader.readLine()) != null; ) {
-                builder.append(str);
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String str;
+                for (; (str = reader.readLine()) != null; ) {
+                    builder.append(str);
+                }
+            } catch (IOException e) {
+                throw e;
             }
             return builder.toString();
     }
 
     public static void fileToConsole(File file) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        String string;
-        System.out.println("File " + file.getAbsolutePath() + " content: ");
-        System.out.println("------------------------------------------------------");
-        for (; (string = reader.readLine()) != null; ) {
-            System.out.println(string);
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String string;
+            System.out.println("File " + file.getAbsolutePath() + " content: ");
+            System.out.println("------------------------------------------------------");
+            for (; (string = reader.readLine()) != null; ) {
+                System.out.println(string);
+            }
+            System.out.println("------------------------------------------------------");
+        } catch (IOException e) {
+            throw e;
         }
-        reader.close();
-        System.out.println("------------------------------------------------------");
     }
 
     public static void writeArrayToFile(Object[] array, File file) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != null) {
-                writer.write(array[i].toString());
-                writer.newLine();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] != null) {
+                    writer.write(array[i].toString());
+                    writer.newLine();
+                }
             }
         }
-        writer.close();
     }
 }

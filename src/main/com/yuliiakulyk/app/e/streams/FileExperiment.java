@@ -42,6 +42,8 @@ public class FileExperiment {
         System.out.println("isFile(): " + existingFile.isFile());
         System.out.println("getParent(): " + existingFile.getParent());
         System.out.println("getFreeSpace(): " + existingFile.getFreeSpace());
+        System.out.println("getTotalSpace(): " + existingFile.getTotalSpace());
+        System.out.println("getUsableSpace(): " + existingFile.getUsableSpace());
 
         System.out.println();
         System.out.println("getParent() for directory: " + directory.getParent());
@@ -63,10 +65,8 @@ public class FileExperiment {
         System.out.println(file4.getAbsolutePath());
         System.out.println(System.getProperty("user.dir"));
         File file3 = new File(System.getProperty("user.dir"), "fileInProjectFolder.txt");
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file3));
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file3))) {
             writer.write("Hello world!");
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

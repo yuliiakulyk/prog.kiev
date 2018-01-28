@@ -14,7 +14,7 @@ public class FileWork {
         try(OutputStream os = new FileOutputStream(out);
                 InputStream is = new FileInputStream(in)) {
             byte [] buffer = new byte [1024 * 1024];
-            int readByte = 0;
+            int readByte;
             for (; (readByte = is.read(buffer)) > 0;) {
                 os.write(buffer, 0, readByte);
             }

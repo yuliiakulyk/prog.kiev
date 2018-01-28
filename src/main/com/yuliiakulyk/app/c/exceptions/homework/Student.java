@@ -19,6 +19,30 @@ public class Student extends Human {
         super();
     }
 
+    public String getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(String university) {
+        this.university = university;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
     @Override
     public String toString() {
         return super.toString() +
