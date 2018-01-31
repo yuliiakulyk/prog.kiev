@@ -51,10 +51,16 @@ public class Group {
     }
 
     public void writeToFile(File file) throws IOException {
+        if (file == null) {
+            throw new IllegalArgumentException("Pointer to file is null!");
+        }
         CommonWordsFromFiles.writeArrayToFile(students, file);
     }
 
     public static Group restoreFromFile(File file) throws IOException {
+        if (file == null) {
+            throw new IllegalArgumentException("Pointer to file is null!");
+        }
         String studentString;
         Group group = new Group();
         String[] params;
