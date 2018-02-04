@@ -5,6 +5,7 @@ import main.com.yuliiakulyk.app.e.streams.homework.CommonWordsFromFiles;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -79,12 +80,17 @@ public class Group {
 
     @Override
     public String toString() {
-        List<String> groupSurnames = new ArrayList<>();
+        List<Student> group = new ArrayList<>();
         for (int i = 0; i < students.length; i++) {
             if (students[i] != null) {
-                groupSurnames.add(students[i].getSurname());
+                group.add(students[i]);
             }
         }
-        return Arrays.toString(groupSurnames.toArray());
+        Collections.sort(group);
+        String[] surnames = new String[group.size()];
+        for (int i = 0; i < surnames.length; i++) {
+            surnames[i] = group.get(i).getSurname();
+        }
+        return Arrays.toString(surnames);
     }
 }

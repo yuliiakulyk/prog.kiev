@@ -14,7 +14,7 @@ public class Main {
         int quarter1 = (int) length / 4;
         int quarter2 = (int) length / 2;
         int quarter3 = (int) length / 4 * 3;
-        
+
         ArraySumTask taskSingleThread = new ArraySumTask(array1);
         ArraySumTask taskThread1 = new ArraySumTask(Arrays.copyOfRange(array1, 0, quarter1));
         ArraySumTask taskThread2 = new ArraySumTask(Arrays.copyOfRange(array1, quarter1, quarter2));

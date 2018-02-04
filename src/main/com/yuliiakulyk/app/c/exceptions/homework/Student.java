@@ -3,7 +3,7 @@ package main.com.yuliiakulyk.app.c.exceptions.homework;
 /**
  * Created by Yuliia Kulyk on 19.01.2018.
  */
-public class Student extends Human {
+public class Student extends Human implements Comparable {
     private String university;
     private String faculty;
     private String group;
@@ -49,5 +49,24 @@ public class Student extends Human {
                 "," + university +
                 "," + faculty +
                 "," + group;
+    }
+
+    public enum StudentProperties {
+        UNIVERSITY, FACULTY, GROUP;
+    }
+
+
+
+    @Override
+    public int compareTo(Object o) {
+        if (o == null) {
+            return 1;
+        }
+        Student anotherStudent = (Student) o;
+        if (this.getSurname().compareTo(anotherStudent.getSurname()) > 0) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
