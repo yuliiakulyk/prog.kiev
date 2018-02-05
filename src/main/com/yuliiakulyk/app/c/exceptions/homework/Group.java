@@ -18,6 +18,10 @@ public class Group {
         this.students = new Student[10];
     }
 
+    public Student[] getStudents() {
+        return students;
+    }
+
     public void addStudent(Student student) throws StudentGroupFullException {
         boolean added = false;
         for (int i = 0; i < students.length; i++) {

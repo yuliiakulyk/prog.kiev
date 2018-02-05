@@ -1,8 +1,8 @@
 Olya,Izhyk,18,Kiev,false,KPI,RTF,1
 Vasya,Doronin,18,Kiev,true,KPI,RTF,1
-Masha,Stepanyk,18,Kiev,false,KPI,RTF,1
-Sasha,Konovalov,18,Kiev,true,KPI,RTF,1
-Yulia,Samoylova,18,Kiev,false,KPI,RTF,1
-Zhenya,Kolosha,18,Kiev,true,KPI,RTF,1
+Masha,Stepanyk,18,Kiev,false,KPI,TEF,1
+Sasha,Konovalov,18,Kiev,true,KPI,FMM,1
+Yulia,Samoylova,18,Kiev,false,KPI,Biotech,1
+Zhenya,Kolosha,18,Kiev,true,KPI,FEL,1
 Katya,Kovalska,18,Kiev,false,KPI,RTF,1
-Tanya,Bosa,18,Kiev,false,KPI,RTF,1
+Tanya,Bosa,18,Kiev,false,KPI,IFF,1

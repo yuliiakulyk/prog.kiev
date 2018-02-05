@@ -13,13 +13,13 @@ public class Main {
         System.out.println(student1);
 
         Student student2 = new Student("Vasya", "Doronin", 18, "Kiev", true, "KPI", "RTF", "1");
-        Student student3 = new Student("Masha", "Stepanyk", 18, "Kiev", false, "KPI", "RTF", "1");
-        Student student4 = new Student("Sasha", "Konovalov", 18, "Kiev", true, "KPI", "RTF", "1");
-        Student student5 = new Student("Yulia", "Samoylova", 18, "Kiev", false, "KPI", "RTF", "1");
-        Student student6 = new Student("Bogdan", "Ivanov", 18, "Kiev", true, "KPI", "RTF", "1");
-        Student student7 = new Student("Zhenya", "Kolosha", 18, "Kiev", true, "KPI", "RTF", "1");
+        Student student3 = new Student("Masha", "Stepanyk", 18, "Kiev", false, "KPI", "TEF", "1");
+        Student student4 = new Student("Sasha", "Konovalov", 18, "Kiev", true, "KPI", "FMM", "1");
+        Student student5 = new Student("Yulia", "Samoylova", 18, "Kiev", false, "KPI", "Biotech", "1");
+        Student student6 = new Student("Bogdan", "Ivanov", 18, "Kiev", true, "KPI", "FIOT", "1");
+        Student student7 = new Student("Zhenya", "Kolosha", 18, "Kiev", true, "KPI", "FEL", "1");
         Student student8 = new Student("Katya", "Kovalska", 18, "Kiev", false, "KPI", "RTF", "1");
-        Student student9 = new Student("Tanya", "Bosa", 18, "Kiev", false, "KPI", "RTF", "1");
+        Student student9 = new Student("Tanya", "Bosa", 18, "Kiev", false, "KPI", "IFF", "1");
         Student student10 = new Student("Andrey", "Zhidkov", 18, "Kiev", true, "KPI", "RTF", "1");
         Student student11 = new Student("Vova", "Sokolov", 18, "Kiev", true, "KPI", "RTF", "1");
         Student student12 = new Student("Vika", "Derkach", 18, "Kiev", false, "KPI", "RTF", "1");
@@ -69,6 +69,24 @@ public class Main {
             System.out.println(group1Copy);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        System.out.println();
+        System.out.println("Sorted by Faculty from low to high:");
+        Student.sort(group.getStudents(), Student.StudentProperties.FACULTY, true);
+        for (Student s: group.getStudents()) {
+            if (s != null) {
+                System.out.print(s.getFaculty() + ", ");
+            }
+        }
+        System.out.println();
+
+        System.out.println("Sorted by Name from high to low:");
+        Student.sort(group.getStudents(), Student.StudentProperties.NAME, false);
+        for (Student s: group.getStudents()) {
+            if (s != null) {
+                System.out.print(s.getName() + ", ");
+            }
         }
     }
 }
