@@ -97,7 +97,7 @@ public class Main {
 
         System.out.println(mainCat);
 
-        System.out.println("Main stopped");
+        System.out.println("MainGroupSerialization stopped");
 
     }
 }

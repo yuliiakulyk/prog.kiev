@@ -1,9 +1,11 @@
 package main.com.yuliiakulyk.app.c.exceptions.homework;
 
+import java.io.Serializable;
+
 /**
  * Created by Yuliia Kulyk on 19.01.2018.
  */
-public class Human {
+public class Human implements Serializable {
     private String name;
     private String surname;
     private int age;

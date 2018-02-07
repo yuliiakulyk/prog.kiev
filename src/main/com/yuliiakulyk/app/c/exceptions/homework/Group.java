@@ -1,6 +1,7 @@
 package main.com.yuliiakulyk.app.c.exceptions.homework;
 
 import main.com.yuliiakulyk.app.e.streams.homework.CommonWordsFromFiles;
+import main.com.yuliiakulyk.app.g.object.ObjectFileWorker;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by Yuliia Kulyk on 19.01.2018.
  */
-public class Group {
+public class Group implements Serializable {
     private Student[] students;
 
     public Group() {
@@ -80,6 +81,21 @@ public class Group {
             }
         }
         return group;
+    }
+
+    public void writeToFileSerialize(File file) throws IOException {
+        if (file == null) {
+            throw new IllegalArgumentException("File pointer is null");
+        }
+        ObjectFileWorker.saveObjectToFile(file, this);
+    }
+
+    public static Group readFromFileSerialize(File file) throws IOException {
+        if (file == null) {
+            throw new IllegalArgumentException("File pointer is null");
+        }
+        Group result = null;
+        return (Group) ObjectFileWorker.loadObjectFromFile(file);
     }
 
     @Override
