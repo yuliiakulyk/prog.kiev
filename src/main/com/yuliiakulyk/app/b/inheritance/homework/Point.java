@@ -2,6 +2,9 @@ package main.com.yuliiakulyk.app.b.inheritance.homework;
 
 /**
  * Created by Yuliia Kulyk on 16.01.2018.
+ *
+ * Создайте класс Point в котором есть два свойства double x
+ double y.
  */
 public class Point {
     private double x;

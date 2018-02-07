@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 /**
  * Created by Yuliia Kulyk on 19.01.2018.
+ *
+ * Создайте класс описывающий человека (создайте метод
+ выводящий информацию о человеке)
+ На его основе создайте класс студент (переопределите
+ метод вывода информации)
  */
 public class Human implements Serializable {
     private String name;

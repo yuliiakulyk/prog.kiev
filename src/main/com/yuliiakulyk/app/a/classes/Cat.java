@@ -2,6 +2,10 @@ package main.com.yuliiakulyk.app.a.classes;
 
 /**
  * Created by Yuliia Kulyk on 15.01.2018.
+ *
+ * Описать класс «Cat» (в качестве образца можно взять домашнего питомца).
+ Наделить его свойствами и методами. Создать несколько экземпляров объектов этого
+ класса. Использовать эти объекты.
  */
 public class Cat {
     private String color;

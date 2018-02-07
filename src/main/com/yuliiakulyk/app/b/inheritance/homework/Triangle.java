@@ -2,6 +2,11 @@ package main.com.yuliiakulyk.app.b.inheritance.homework;
 
 /**
  * Created by Yuliia Kulyk on 16.01.2018.
+ *
+ * Создайте классы которые описывают как минимум 3
+ геометрические фигуры (они должны быть подклассами
+ Shape), при этом они в качестве свойств должны содержать
+ классы Point.
  */
 public class Triangle extends Shape {
     private Point a;

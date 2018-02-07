@@ -2,6 +2,9 @@ package main.com.yuliiakulyk.app.b.inheritance.homework;
 
 /**
  * Created by Yuliia Kulyk on 16.01.2018.
+ *
+ * Создайте абстрактный класс Shape в котором есть два
+ абстрактных метода double getPerimetr() и double getArea().
  */
 public abstract class Shape {
     public abstract double getPerimeter();

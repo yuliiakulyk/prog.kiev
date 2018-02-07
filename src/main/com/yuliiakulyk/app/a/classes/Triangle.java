@@ -2,6 +2,10 @@ package main.com.yuliiakulyk.app.a.classes;
 
 /**
  * Created by Yuliia Kulyk on 15.01.2018.
+ *
+ * Описать класс «Triangle». В качестве свойств возьмите длины сторон
+ треугольника. Реализуйте метод, который будет возвращать площадь этого
+ треугольника. Создайте несколько объектов этого класса и протестируйте их.
  */
 public class Triangle {
     private double a;

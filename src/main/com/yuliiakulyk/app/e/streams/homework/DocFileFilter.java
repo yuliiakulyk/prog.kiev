@@ -5,6 +5,10 @@ import java.io.FileFilter;
 
 /**
  * Created by Yuliia Kulyk on 27.01.2018.
+ *
+ * Напишите программу которая скопирует файлы (с заранее
+ определенным расширением — например только doc) из
+ каталога источника в каталог приемник.
  */
 public class DocFileFilter implements FileFilter {
 

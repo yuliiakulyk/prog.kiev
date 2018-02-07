@@ -5,6 +5,10 @@ import java.util.Random;
 
 /**
  * Created by Yuliia Kulyk on 31.01.2018.
+ *
+ * Написать код для многопоточного подсчета суммы элементов
+ массива целых чисел. Сравнить скорость подсчета с простым
+ алгоритмом.
  */
 public class ArraySumTask implements Runnable {
     private BigInteger sum;
