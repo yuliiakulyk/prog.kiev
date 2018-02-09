@@ -73,10 +73,7 @@ public class Student extends Human implements Comparable {
     }
 
     public static void sort(Student[] array, StudentProperties property, boolean isLowToHigh) {
-        Arrays.sort(array, getStudentComparator(property));
-        if (isLowToHigh == false) {
-            Student.reverseArray(array);
-        }
+        Arrays.sort(array, getStudentComparator(property, isLowToHigh));
     }
 
     private static void reverseArray(Student[] array) {
@@ -106,20 +103,24 @@ public class Student extends Human implements Comparable {
         };
     }
 
-    private static Comparator<Student> getStudentComparator(StudentProperties property) {
+    public static Comparator<Student> getStudentComparator(StudentProperties property, boolean isAscendingOrder) {
         return new Comparator<Student>() {
             @Override
             public int compare(Student s1, Student s2) {
+                int multiplier = 1;
+                if (!isAscendingOrder) {
+                    multiplier = -1;
+                }
                 if (s1 == null && s2 == null) {
                     return 0;
                 }
                 if (s1 == null) {
-                    return -1;
+                    return -1 * multiplier;
                 }
                 if (s2 == null) {
-                    return 1;
+                    return 1 * multiplier;
                 }
-                return compareNeededProperties(property, s1, s2);
+                return compareNeededProperties(property, s1, s2) * multiplier;
             }
 
             public int compareNeededProperties(StudentProperties properties, Student s1, Student s2) {
@@ -160,4 +161,25 @@ public class Student extends Human implements Comparable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Student student = (Student) o;
+
+        if (university != null ? !university.equals(student.university) : student.university != null) return false;
+        if (faculty != null ? !faculty.equals(student.faculty) : student.faculty != null) return false;
+        return group != null ? group.equals(student.group) : student.group == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (university != null ? university.hashCode() : 0);
+        result = 31 * result + (faculty != null ? faculty.hashCode() : 0);
+        result = 31 * result + (group != null ? group.hashCode() : 0);
+        return result;
+    }
 }

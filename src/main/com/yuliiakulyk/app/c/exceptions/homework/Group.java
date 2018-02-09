@@ -4,10 +4,7 @@ import main.com.yuliiakulyk.app.e.streams.homework.CommonWordsFromFiles;
 import main.com.yuliiakulyk.app.g.object.ObjectFileWorker;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Yuliia Kulyk on 19.01.2018.
@@ -28,29 +25,43 @@ import java.util.List;
  * Используя стандартный методы сериализации создайте мини базу
  данных для работы с группами студентов (возможность записи и чтения
  базы из файла по запросу пользователя).
+ Модифицируйте класс группа для более удобных методов работы
+ с динамическими массивами.
  */
 public class Group implements Serializable {
-    private Student[] students;
+    //private Student[] students;
+    private SortedSet<Student> students;
+    private int maxSize;
 
     public Group() {
-        this.students = new Student[10];
+        this.students = new TreeSet<>(Student.getStudentComparator(Student.StudentProperties.SURNAME, true));
+        this.maxSize = 10;
     }
 
-    public Student[] getStudents() {
+    public Group(int size) {
+        this.students = new TreeSet<>(Student.getStudentComparator(Student.StudentProperties.SURNAME, true));
+        this.maxSize = size;
+    }
+
+    public SortedSet<Student> getStudents() {
         return students;
     }
 
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public void setMaxSize(int maxSize) {
+        this.maxSize = maxSize;
+    }
+
     public void addStudent(Student student) throws StudentGroupFullException {
-        boolean added = false;
-        for (int i = 0; i < students.length; i++) {
-            if (students[i] == null) {
-                students[i] = student;
-                added = true;
-                break;
-            }
-        }
-        if (added == false) {
+        if (student == null) {
+            throw new IllegalArgumentException("Parameter is null");
+        } else if (this.getStudents().size() >= this.maxSize) {
             throw new StudentGroupFullException();
+        } else {
+            students.add(student);
         }
     }
 
@@ -58,8 +69,7 @@ public class Group implements Serializable {
         if (searchBySurname(surname) == null) {
             throw new Exception("Student with this surname doesn't exist in this group, impossible to remove the student.");
         } else {
-            int i = Arrays.asList(students).indexOf(searchBySurname(surname));
-            students[i] = null;
+            students.remove(searchBySurname(surname));
         }
     }
 
@@ -77,7 +87,7 @@ public class Group implements Serializable {
         if (file == null) {
             throw new IllegalArgumentException("Pointer to file is null!");
         }
-        CommonWordsFromFiles.writeArrayToFile(students, file);
+        CommonWordsFromFiles.writeArrayToFile(students.toArray(), file);
     }
 
     public static Group restoreFromFile(File file) throws IOException {
@@ -117,17 +127,16 @@ public class Group implements Serializable {
 
     @Override
     public String toString() {
-        List<Student> group = new ArrayList<>();
-        for (int i = 0; i < students.length; i++) {
-            if (students[i] != null) {
-                group.add(students[i]);
-            }
+        StringBuilder builder = new StringBuilder("Group students: ");
+        Iterator<Student> iterator = students.iterator();
+        for(; iterator.hasNext(); ) {
+            builder.append(iterator.next().getSurname() + ",");
         }
-        Collections.sort(group);
-        String[] surnames = new String[group.size()];
-        for (int i = 0; i < surnames.length; i++) {
-            surnames[i] = group.get(i).getSurname();
+        try {
+            builder.deleteCharAt(builder.lastIndexOf(","));
+        } catch (StringIndexOutOfBoundsException e) {
+
         }
-        return Arrays.toString(surnames);
+        return builder.toString();
     }
 }

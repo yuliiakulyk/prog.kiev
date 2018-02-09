@@ -3,6 +3,9 @@ package main.com.yuliiakulyk.app.c.exceptions.homework;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Iterator;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Created by Yuliia Kulyk on 19.01.2018.
@@ -10,8 +13,6 @@ import java.nio.file.Paths;
 public class Main {
     public static void main(String[] args) {
         Student student1 = new Student("Olya", "Izhyk", 18, "Kiev", false, "KPI", "RTF", "1");
-        System.out.println(student1);
-
         Student student2 = new Student("Vasya", "Doronin", 18, "Kiev", true, "KPI", "RTF", "1");
         Student student3 = new Student("Masha", "Stepanyk", 18, "Kiev", false, "KPI", "TEF", "1");
         Student student4 = new Student("Sasha", "Konovalov", 18, "Kiev", true, "KPI", "FMM", "1");
@@ -36,8 +37,8 @@ public class Main {
             group.addStudent(student7);
             group.addStudent(student8);
             group.addStudent(student9);
-            //group.addStudent(student10);
-            //group.addStudent(student11);
+            group.addStudent(student10);
+            group.addStudent(student11);
         } catch (StudentGroupFullException e) {
             e.printStackTrace();
         }
@@ -73,8 +74,9 @@ public class Main {
 
         System.out.println();
         System.out.println("Sorted by Faculty from low to high:");
-        Student.sort(group.getStudents(), Student.StudentProperties.FACULTY, true);
-        for (Student s: group.getStudents()) {
+        SortedSet<Student> setByFaculty = new TreeSet<Student>(Student.getStudentComparator(Student.StudentProperties.FACULTY, true));
+        setByFaculty.addAll(group.getStudents());
+        for (Student s: setByFaculty) {
             if (s != null) {
                 System.out.print(s.getFaculty() + ", ");
             }
@@ -82,8 +84,10 @@ public class Main {
         System.out.println();
 
         System.out.println("Sorted by Name from high to low:");
-        Student.sort(group.getStudents(), Student.StudentProperties.NAME, false);
-        for (Student s: group.getStudents()) {
+        TreeSet<Student> setByName = new TreeSet<Student>(Student.getStudentComparator(Student.StudentProperties.NAME, false));
+        setByFaculty.addAll(group.getStudents());
+        Iterator<Student> iterator = setByName.descendingIterator();
+        for (Student s: setByFaculty) {
             if (s != null) {
                 System.out.print(s.getName() + ", ");
             }

@@ -76,4 +76,28 @@ public class Human implements Serializable {
                 + address + ","
                 + isMale;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Human human = (Human) o;
+
+        if (age != human.age) return false;
+        if (isMale != human.isMale) return false;
+        if (name != null ? !name.equals(human.name) : human.name != null) return false;
+        if (surname != null ? !surname.equals(human.surname) : human.surname != null) return false;
+        return address != null ? address.equals(human.address) : human.address == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + age;
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (isMale ? 1 : 0);
+        return result;
+    }
 }

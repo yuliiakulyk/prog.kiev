@@ -38,8 +38,8 @@ public class MainGroupSerialization {
         }
         System.out.println(restoredGroup);
         System.out.println("Students info:");
-        for (int i = 0; i < restoredGroup.getStudents().length; i++) {
-            System.out.println(restoredGroup.getStudents()[i]);
+        for (Student student: restoredGroup.getStudents()) {
+            System.out.println(student);
         }
     }
 }
