@@ -10,7 +10,7 @@ import java.util.List;
  элементов, затем удалит первые два и последний, а затем выведет
  результат на экран.
  */
-public class Main1 {
+public class MainTask1 {
     public static void main(String[] args) {
         method();
     }
