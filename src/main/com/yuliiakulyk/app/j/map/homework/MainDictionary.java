@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * Created by Yuliia Kulyk on 17.02.2018.
  */
-public class Main {
+public class MainDictionary {
     public static void main(String[] args) {
         File dictionaryFile = new File("src/main/com/yuliiakulyk/app/j/map/homework/dictionary.txt");
         Dictionary dictionary = new Dictionary(dictionaryFile);
